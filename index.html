@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专属网络服务</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f4f4;font-family:PingFang SC,Microsoft YaHei,sans-serif;padding:15px}
+.shop{max-width:450px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 3px 15px rgba(0,0,0,0.05);padding:25px;position:relative}
+
+.bottom-contact{
+  position:absolute;bottom:15px;right:15px;
+  font-size:12px;color:#666;text-align:right
+}
+.bottom-contact a{color:#00a0e9;text-decoration:none}
+
+.avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 15px;display:block;background:#eee;object-fit:cover}
+h1{text-align:center;font-size:22px;margin-bottom:20px;color:#222}
+
+.order-check{margin-bottom:20px}
+.order-check input{
+  width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;
+  font-size:15px;margin-bottom:8px
+}
+.order-check button{
+  width:100%;padding:12px;background:#00a0e9;color:white;border:none;
+  border-radius:8px;font-size:15px
+}
+#orderResult{
+  margin-top:10px;font-size:14px;color:#333;text-align:center
+}
+
+.package{border-bottom:1px solid #f0f0f0;padding:16px 0}
+.package-title{font-size:16px;font-weight:500;color:#222;margin-bottom:10px}
+.plan{margin-bottom:12px;padding:12px;background:#f8f9fa;border-radius:8px}
+.plan-name{font-size:15px;font-weight:500;color:#222;margin-bottom:6px}
+.plan-price{color:#ff3333;font-size:18px;font-weight:bold;margin-bottom:6px}
+.features{font-size:14px;color:#666;line-height:1.5}
+.buy{display:block;background:#00a0e9;color:#fff;text-align:center;text-decoration:none;padding:10px 0;border-radius:8px;font-size:15px;margin-top:8px}
+</style>
+</head>
+
+<body>
+<div class="shop">
+
+<img class="avatar" src="https://via.placeholder.com/80" alt="头像">
+<h1>🌍 专属网络服务</h1>
+
+<div class="order-check">
+  <input type="text" id="orderId" placeholder="输入订单号查询">
+  <button onclick="checkOrder()">查询订单</button>
+  <div id="orderResult"></div>
+</div>
+
+<!-- 基础套餐 -->
+<div class="package">
+<div class="package-title">1. 基础套餐</div>
+<div class="plan">
+<div class="plan-name">半年付</div>
+<div class="plan-price">¥78（每月¥13）</div>
+<div class="features">
+服务器选择：全球50+个国家<br>
+设备连接数：最多6台设备同时连接<br>
+流量：每月1000GB<br>
+速度限制：标准速度，适合日常浏览和普通使用<br>
+支持设备：Windows、Mac、iOS、Android
+</div>
+<button class="buy" onclick="showUSDT()">立即购买</button>
+</div>
+
+<div class="plan">
+<div class="plan-name">年付</div>
+<div class="plan-price">¥139（每月¥11.6）</div>
+<div class="features">
+服务器选择：全球50+个国家<br>
+设备连接数：最多6台设备同时连接<br>
+流量：每月1000GB<br>
+速度限制：标准速度，适合日常浏览和普通使用<br>
+支持设备：Windows、Mac、iOS、Android
+</div>
+<button class="buy" onclick="showUSDT()">立即购买</button>
+</div>
+</div>
+
+<!-- 高级套餐 -->
+<div class="package">
+<div class="package-title">2. 高级套餐</div>
+<div class="plan">
+<div class="plan-name">月付</div>
+<div class="plan-price">¥98</div>
+<div class="features">
+服务器选择：全球50+个国家<br>
+设备连接数：无限设备连接<br>
+流量：2000GB（不限时）<br>
+速度限制：超高速，适合4K视频流和大规模下载<br>
+支持设备：Windows、Mac、iOS、Android、Linux、路由器、智能电视、游戏主机<br>
+额外功能：无日志政策，自动断开保护，Kill Switch，专属IP，24/7客服支持，双重VPN
+</div>
+<button class="buy" onclick="showUSDT()">立即购买</button>
+</div>
+</div>
+
+<!-- 无限流量套餐（特权版） -->
+<div class="package">
+<div class="package-title">3. 无限流量套餐（特权版）</div>
+<div class="plan">
+<div class="plan-name">月付</div>
+<div class="plan-price">¥288.6</div>
+<div class="features">
+服务器选择：全球50+个国家<br>
+设备连接数：无限设备连接<br>
+流量：无限流量<br>
+速度限制：超高速，适合4K视频流、大规模下载及其他高带宽应用<br>
+支持设备：Windows、Mac、iOS、Android、Linux、路由器、智能电视、游戏...
