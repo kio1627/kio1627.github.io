@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青梧高速机场</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{background:#f5f7fa;padding:20px}
+.container{max-width:420px;margin:0 auto}
+.page{display:none}
+.page.active{display:block}
+
+/* 登录注册 */
+.login-box{background:#fff;border-radius:14px;padding:30px;box-shadow:0 2px 12px rgba(0,0,0,0.06);margin-bottom:20px}
+.login-box h2{text-align:center;margin-bottom:25px;color:#222}
+.tab{display:flex;gap:10px;margin-bottom:20px}
+.tab button{flex:1;padding:10px;border:none;border-radius:8px;background:#eee;cursor:pointer}
+.tab button.active{background:#007AFF;color:#fff}
+.form{display:none}
+.form.active{display:block}
+.form-item{margin-bottom:18px}
+.form-item label{display:block;margin-bottom:8px;font-size:14px}
+.form-item input{width:100%;padding:12px;border:1px solid #e1e4e8;border-radius:10px}
+.btn{width:100%;padding:13px;background:#007AFF;color:#fff;border:none;border-radius:10px;margin-top:5px;cursor:pointer}
+
+/* 套餐 */
+.header{text-align:center;margin:20px 0 30px}
+.item{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,0.05)}
+.item h3{margin-bottom:12px}
+.info{font-size:14px;color:#555;line-height:1.7}
+.buy-group{display:flex;gap:10px;margin-top:18px}
+.buy{flex:1;padding:13px;background:#007AFF;color:#fff;border:none;border-radius:10px;cursor:pointer}
+.buy-single{width:100%;padding:13px;background:#007AFF;color:#fff;border:none;border-radius:10px;margin-top:18px;cursor:pointer}
+
+/* 支付 */
+.pay-box{background:#fff;border-radius:14px;padding:30px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.pay-box h2{text-align:center;margin-bottom:25px}
+.usdt{background:#f8f8f8;padding:18px;border-radius:10px;margin-bottom:20px}
+.addr{font-family:monospace;word-break:break-all}
+.tip{text-align:center;color:#f44336;margin:20px 0;line-height:1.6}
+.pay-btn{width:100%;padding:14px;background:#1677ff;color:#fff;border:none;border-radius:10px;margin-bottom:12px;cursor:pointer}
+.pay-btn:last-child{background:#ff6700}
+
+.footer{text-align:center;font-size:14px;color:#666;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 登录注册页 -->
+  <div id="page1" class="page active">
+    <div class="login-box">
+      <h2>青梧高速机场</h2>
+      <div class="tab">
+        <button class="tab-btn active" onclick="switchTab('login')">登录</button>
+        <button class="tab-btn" onclick="switchTab('register')">注册</button>
+      </div>
+
+      <div id="login" class="form active">
+        <div class="form-item">
+          <label>账号</label>
+          <input type="text" placeholder="请输入账号">
+        </div>
+        <div class="form-item">
+          <label>密码</label>
+          <input type="password" placeholder="请输入密码">
+        </div>
+        <button class="btn" onclick="goPage(2)">登录</button>
+      </div>
+
+      <div id="register" class="form">
+        <div class="form-item">
+          <label>账号</label>
+          <input type="text" placeholder="请设置账号">
+        </div>
+        <div class="form-item">
+          <label>密码</label>
+          <input type="password" placeholder="请设置密码">
+        </div>
+        <div class="form-item">
+          <label>确认密码</label>
+          <input type="password" placeholder="再次输入密码">
+        </div>
+        <button class="btn">注册</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 套餐页 -->
+  <div id="page2" class="page">
+    <div class="header">
+      <h2>青梧高速机场</h2>
+    </div>
+
+    <div class="item">
+      <h3>基础套餐</h3>
+      <div class="info">
+        <p>服务器：全球10+个国家</p>
+        <p>设备：最多6台同时连接</p>
+        <p>流量：每月1000GB</p>
+        <p>速度：标准速度</p>
+        <p>支持：Windows、Mac、iOS、Android</p>
+      </div>
+      <div class="buy-group">
+        <button class="buy" onclick="goPage(3)">季付 ¥42</button>
+        <button class="buy" onclick="goPage(3)">半年付 ¥78</button>
+        <button class="buy" onclick="goPage(3)">年付 ¥139</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>高级套餐</h3>
+      <div class="info">
+        <p>服务器：全球50+个国家</p>
+        <p>设备：无限设备连接</p>
+        <p>流量：每月2000GB（不限时）</p>
+        <p>速度：超高速，支持4K/大文件</p>
+        <p>支持：全平台+路由器+电视+主机</p>
+        <p>额外：无日志、Kill Switch、专属IP、24/7客服、双重VPN</p>
+      </div>
+      <button class="buy-single" onclick="goPage(3)">一次性 ¥98</button>
+    </div>
+
+    <div class="item">
+      <h3>无限流量套餐（特权版）</h3>
+      <div class="info">
+        <p>服务器：全球50+个国家</p>
+        <p>设备：无限设备连接</p>
+        <p>流量：无限流量</p>
+        <p>速度：超高速，支持高带宽应用</p>
+        <p>支持：全平台+路由器+电视+主机</p>
+        <p>额外：无日志、Kill Switch、专属IP、24/7客服、双重VPN</p>
+      </div>
+      <button class="buy-single" onclick="goPage(3)">月付 ¥288.6</button>
+    </div>
+  </div>
+
+  <!-- 支付页 -->
+  <div id="page3" class="page">
+    <div class="pay-box">
+      <h2>确认支付</h2>
+      <div class="usdt">
+        <p>USDT 收款地址（TRC20）：</p>
+        <div class="addr">TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi</div>
+      </div>
+
+      <div class="tip">
+        请使用币安支付<br>
+        更换支付联系客服
+      </div>
+
+      <button class="pay-btn">支付宝支付</button>
+      <button class="pay-btn">微信支付</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    telegram客服联系：@kio_037
+  </div>
+</div>
+
+<script>
+function goPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
+  document.getElementById('page'+n).classList.add('active')
+}
+function switchTab(tab){
+  document.querySelectorAll('.form').forEach(f=>f.classList.remove('active'))
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'))
+  document.getElementById(tab).classList.add('active')
+  event.target.classList.add('active')
+}
+</script>
+</body>
+</html>
