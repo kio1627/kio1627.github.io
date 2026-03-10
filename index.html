@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>青梧高速机场</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: #f5f7fa; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; flex-direction: column; }
+    .container { max-width: 420px; width: 100%; }
+    .header { text-align: center; margin: 20px 0 30px; }
+    .header h2 { font-size: 22px; color: #222; }
+    .item { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 1px 8px rgba(0,0,0,0.05); }
+    .item h3 { font-size: 18px; margin-bottom: 12px; color: #222; }
+    .info { font-size: 14px; color: #555; line-height: 1.7; }
+    .buy-group { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+    .buy { flex: 1; padding: 13px; background: #007AFF; color: #fff; border: none; border-radius: 10px; font-size: 15px; cursor: pointer; transition: background 0.3s; }
+    .buy:hover { background: #0056b3; }
+    .buy-single { width: 100%; padding: 13px; background: #007AFF; color: #fff; border: none; border-radius: 10px; font-size: 16px; margin-top: 18px; cursor: pointer; transition: background 0.3s; }
+    .buy-single:hover { background: #0056b3; }
+    .pay-box { max-width: 400px; width: 100%; background: #fff; border-radius: 14px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-top: 30px; }
+    .pay-box h2 { text-align: center; margin-bottom: 25px; color: #222; }
+    .usdt { background: #f8f8f8; padding: 18px; border-radius: 10px; margin-bottom: 20px; }
+    .usdt p { font-size: 14px; color: #555; margin-bottom: 8px; }
+    .addr { font-family: monospace; font-size: 15px; word-break: break-all; color: #333; background: #f1f1f1; padding: 10px; border-radius: 8px; margin-top: 8px; }
+    .tip { text-align: center; color: #ff4444; font-size: 15px; margin: 20px 0; line-height: 1.6; }
+    .pay-btn { width: 100%; padding: 14px; background: #1677ff; color: #fff; border: none; border-radius: 10px; font-size: 16px; margin-bottom: 12px; cursor: pointer; transition: background 0.3s; }
+    .pay-btn:hover { background: #0056b3; }
+    .pay-btn:last-child { background: #ff6700; }
+    .pay-btn:last-child:hover { background: #cc5200; }
+    .footer { text-align: center; font-size: 14px; color: #666; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 套餐选择区域 -->
+  <div class="header">
+    <h2>青梧高速机场</h2>
+  </div>
+
+  <div class="item" id="package-selection">
+    <h3>基础套餐</h3>
+    <div class="info">
+      <p>服务器：全球10+个国家</p>
+      <p>设备：最多6台同时连接</p>
+      <p>流量：每月1000GB</p>
+      <p>速度：标准速度</p>
+      <p>支持：Windows、Mac、iOS、Android</p>
+    </div>
+    <div class="buy-group">
+      <button class="buy" onclick="selectPackage('basic', 42)">季付 ¥42</button>
+      <button class="buy" onclick="selectPackage('basic', 78)">半年付 ¥78</button>
+      <button class="buy" onclick="selectPackage('basic', 139)">年付 ¥139</button>
+    </div>
+  </div>
+
+  <div class="item">
+    <h3>高级套餐</h3>
+    <div class="info">
+      <p>服务器：全球50+个国家</p>
+      <p>设备：无限设备连接</p>
+      <p>流量：每月2000GB（不限时）</p>
+      <p>速度：超高速，支持4K/大文件</p>
+      <p>支持：全平台+路由器+电视+主机</p>
+      <p>额外：无日志、Kill Switch、专属IP、24/7客服、双重VPN</p>
+    </div>
+    <button class="buy-single" onclick="selectPackage('advanced', 98)">一次性 ¥98</button>
+  </div>
+
+  <div class="item">
+    <h3>无限流量套餐（特权版）</h3>
+    <div class="info">
+      <p>服务器：全球50+个国家</p>
+      <p>设备：无限设备连接</p>
+      <p>流量：无限流量</p>
+      <p>速度：超高速，支持高带宽应用</p>
+      <p>支持：全平台+路由器+电视+主机</p>
+      <p>额外：无日志、Kill Switch、专属IP、24/7客服、双重VPN</p>
+    </div>
+    <button class="buy-single" onclick="selectPackage('unlimited', 288.6)">月付 ¥288.6</button>
+  </div>
+
+  <!-- 支付区域（隐藏） -->
+  <div class="pay-box" id="payment-section" style="display:none;">
+    <h2>确认支付</h2>
+
+    <div class="usdt">
+      <p>套餐：<span id="plan-name"></span></p>
+      <p>金额：¥<span id="plan-price"></span></p>
+      <p>USDT 收款地址（TRC20）：</p>
+      <div class="addr">TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi</div>
+    </div>
+
+    <div class="tip">
+      请使用币安支付<br>
+      更换支付联系客服
+    </div>
+
+    <button class="pay-btn" onclick="location.href='https://www.alipay.com'">支付宝支付</button>
+    <button class="pay-btn" onclick="location.href='https://wx.tenpay.com'">微信支付</button>
+  </div>
+
+</div>
+
+<div class="footer">
+  telegram客服联系：@kio_037
+</div>
+
+<script>
+  function selectPackage(plan, price) {
+    const planNames = {
+      'basic': '基础套餐',
+      'advanced': '高级套餐',
+      'unlimited': '无限流量套餐（特权版）'
+    };
+
+    // 更新套餐和价格信息
+    document.getElementById('plan-name').textContent = planNames[plan] || '未知套餐';
+    document.getElementById('plan-price').textContent = price || '0';
+
+    // 显示支付区域并隐藏套餐选择区域
+    document.getElementById('package-selection').style.display = 'none';
+    document.getElementById('payment-section').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
