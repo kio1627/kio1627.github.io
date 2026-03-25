@@ -15,7 +15,6 @@ h1{font-size:36px;margin-bottom:30px}
 .usdt{background:#2aa198}
 .back{background:#333;color:#aaa;margin-top:20px}
 
-/* 表单样式 */
 .form-box{width:100%;max-width:400px;background:#1c1c1e;border-radius:18px;padding:22px;margin-top:30px}
 .form-box h4{font-size:18px;margin-bottom:15px;text-align:center}
 input{width:100%;padding:14px;background:#222;color:#fff;border:none;border-radius:12px;margin-bottom:12px;font-size:16px}
@@ -24,7 +23,6 @@ input{width:100%;padding:14px;background:#222;color:#fff;border:none;border-radi
 .kefu{color:#aaa;font-size:14px;margin-top:20px;text-align:center;line-height:1.6}
 </style>
 </head>
-
 <body>
 <h1>确认支付</h1>
 <div class="amount" id="amountText">金额：¥--</div>
@@ -34,10 +32,11 @@ input{width:100%;padding:14px;background:#222;color:#fff;border:none;border-radi
 <button class="btn usdt" onclick="alert('USDT-TRC20地址：TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi\n金额：¥' + getParam('amount'))">USDT-TRC20 支付</button>
 <button class="btn back" onclick="history.back()">返回套餐页</button>
 
-<!-- 支付后提交信息 → 发到你 Gmail -->
 <div class="form-box">
   <h4>支付后提交信息</h4>
-  <form action="https://formspree.io/f/xrbgkgan" method="POST">
+  <form action="https://formsubmit.co/tt8450950@gmail.com" method="POST">
+    <input type="hidden" name="_next" value="https://www.lllixx.ccwu.cc/pay.html">
+    <input type="hidden" name="_subject" value="牛逼高速机场 - 新订单提交">
     <input type="email" name="customer_email" placeholder="您的邮箱（用于接收账号）" required>
     <input type="text" name="package" placeholder="购买套餐" id="form_package" readonly>
     <input type="text" name="pay_time" placeholder="支付时间/备注" required>
@@ -57,7 +56,12 @@ function getParam(name) {
   return urlParams.get(name);
 }
 const amount = getParam('amount');
-const alipayUrl = getParam('alipay');
+let alipayUrl = getParam('alipay');
+
+// 固定 58 元套餐的新支付宝链接
+if (amount === '58') {
+  alipayUrl = 'https://qr.alipay.com/2m618367pz0nzbfhjptoef2';
+}
 
 document.getElementById('amountText').textContent = '金额：¥' + amount;
 document.getElementById('form_package').value = amount + ' 元';
