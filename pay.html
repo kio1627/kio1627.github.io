@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>确认支付</title>
+<title>牛逼高速机场 - 确认支付</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system, BlinkMacSystemFont, sans-serif}
 body{background:#000;color:#fff;padding:40px 20px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
@@ -14,9 +14,17 @@ h1{font-size:36px;margin-bottom:30px}
 .wechat{background:#34c759}
 .usdt{background:#2aa198}
 .back{background:#333;color:#aaa;margin-top:20px}
-.kefu{color:#aaa;font-size:14px;margin-top:20px;text-align:center}
+
+/* 表单样式 */
+.form-box{width:100%;max-width:400px;background:#1c1c1e;border-radius:18px;padding:22px;margin-top:30px}
+.form-box h4{font-size:18px;margin-bottom:15px;text-align:center}
+input{width:100%;padding:14px;background:#222;color:#fff;border:none;border-radius:12px;margin-bottom:12px;font-size:16px}
+.submit-btn{background:#007aff;color:#fff;border:none;border-radius:14px;padding:16px;width:100%;font-size:16px;font-weight:500}
+
+.kefu{color:#aaa;font-size:14px;margin-top:20px;text-align:center;line-height:1.6}
 </style>
 </head>
+
 <body>
 <h1>确认支付</h1>
 <div class="amount" id="amountText">金额：¥--</div>
@@ -26,9 +34,21 @@ h1{font-size:36px;margin-bottom:30px}
 <button class="btn usdt" onclick="alert('USDT-TRC20地址：TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi\n金额：¥' + getParam('amount'))">USDT-TRC20 支付</button>
 <button class="btn back" onclick="history.back()">返回套餐页</button>
 
+<!-- 支付后提交信息 → 发到你 Gmail -->
+<div class="form-box">
+  <h4>支付后提交信息</h4>
+  <form action="https://formspree.io/f/xrbgkgan" method="POST">
+    <input type="email" name="customer_email" placeholder="您的邮箱（用于接收账号）" required>
+    <input type="text" name="package" placeholder="购买套餐" id="form_package" readonly>
+    <input type="text" name="pay_time" placeholder="支付时间/备注" required>
+    <button class="submit-btn" type="submit">提交订单</button>
+  </form>
+</div>
+
 <div class="kefu">
 TG客服 @kio_037<br>
-QQ客服 2245190858
+QQ客服 2245190858<br>
+客服邮箱：tt8450950@gmail.com
 </div>
 
 <script>
@@ -38,7 +58,9 @@ function getParam(name) {
 }
 const amount = getParam('amount');
 const alipayUrl = getParam('alipay');
+
 document.getElementById('amountText').textContent = '金额：¥' + amount;
+document.getElementById('form_package').value = amount + ' 元';
 document.getElementById('alipayBtn').onclick = () => window.open(alipayUrl);
 </script>
 </body>
