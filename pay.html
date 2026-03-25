@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>确认支付</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system, BlinkMacSystemFont, sans-serif}
+body{background:#000;color:#fff;padding:40px 20px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+h1{font-size:36px;margin-bottom:30px}
+.amount{font-size:28px;color:#ff3b30;margin-bottom:40px}
+.btn{width:100%;max-width:400px;padding:18px;border:none;border-radius:14px;font-size:22px;font-weight:500;margin-bottom:16px;color:#fff}
+.alipay{background:#007aff}
+.wechat{background:#34c759}
+.usdt{background:#2aa198}
+.back{background:#333;color:#aaa;margin-top:20px}
+.kefu{color:#aaa;font-size:14px;margin-top:20px;text-align:center}
+</style>
+</head>
+<body>
+<h1>确认支付</h1>
+<div class="amount" id="amountText">金额：¥--</div>
+
+<button class="btn alipay" id="alipayBtn">支付宝支付</button>
+<button class="btn wechat" onclick="alert('QQ客服：2245190858\nTG客服：@kio_037')">微信支付</button>
+<button class="btn usdt" onclick="alert('USDT-TRC20地址：TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi\n金额：¥' + getParam('amount'))">USDT-TRC20 支付</button>
+<button class="btn back" onclick="history.back()">返回套餐页</button>
+
+<div class="kefu">
+TG客服 @kio_037<br>
+QQ客服 2245190858
+</div>
+
+<script>
+function getParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+const amount = getParam('amount');
+const alipayUrl = getParam('alipay');
+document.getElementById('amountText').textContent = '金额：¥' + amount;
+document.getElementById('alipayBtn').onclick = () => window.open(alipayUrl);
+</script>
+</body>
+</html>
