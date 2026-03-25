@@ -5,67 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>牛逼高速机场 - 确认支付</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system, BlinkMacSystemFont, sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
 body{background:#000;color:#fff;padding:40px 20px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
-h1{font-size:36px;margin-bottom:30px}
+.site-title{font-size:32px;margin-bottom:20px;font-weight:bold;text-align:center}
+h1{font-size:28px;margin-bottom:30px}
 .amount{font-size:28px;color:#ff3b30;margin-bottom:40px}
 .btn{width:100%;max-width:400px;padding:18px;border:none;border-radius:14px;font-size:22px;font-weight:500;margin-bottom:16px;color:#fff}
 .alipay{background:#007aff}
-.wechat{background:#34c759}
-.usdt{background:#2aa198}
+.wechat{background:#34c758}
+.usdt{background:#4a90e2}
+.mailbtn{background:#ff9500;margin-top:10px}
 .back{background:#333;color:#aaa;margin-top:20px}
-
-.form-box{width:100%;max-width:400px;background:#1c1c1e;border-radius:18px;padding:22px;margin-top:30px}
-.form-box h4{font-size:18px;margin-bottom:15px;text-align:center}
-input{width:100%;padding:14px;background:#222;color:#fff;border:none;border-radius:12px;margin-bottom:12px;font-size:16px}
-.submit-btn{background:#007aff;color:#fff;border:none;border-radius:14px;padding:16px;width:100%;font-size:16px;font-weight:500}
-
-.kefu{color:#aaa;font-size:14px;margin-top:20px;text-align:center;line-height:1.6}
+.kefu{color:#aaa;font-size:14px;margin-top:30px;text-align:center;line-height:1.6}
 </style>
 </head>
+
 <body>
+<div class="site-title">牛逼高速机场</div>
 <h1>确认支付</h1>
 <div class="amount" id="amountText">金额：¥--</div>
 
 <button class="btn alipay" id="alipayBtn">支付宝支付</button>
-<button class="btn wechat" onclick="alert('QQ客服：2245190858\nTG客服：@kio_037')">微信支付</button>
-<button class="btn usdt" onclick="alert('USDT-TRC20地址：TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi\n金额：¥' + getParam('amount'))">USDT-TRC20 支付</button>
-<button class="btn back" onclick="history.back()">返回套餐页</button>
+<button class="btn wechat">微信支付</button>
+<button class="btn usdt" id="usdtBtn">USDT 支付</button>
 
-<div class="form-box">
-  <h4>支付后提交信息</h4>
-  <form action="https://formsubmit.co/tt8450950@gmail.com" method="POST">
-    <input type="hidden" name="_next" value="https://www.lllixx.ccwu.cc/pay.html">
-    <input type="hidden" name="_subject" value="牛逼高速机场 - 新订单提交">
-    <input type="email" name="customer_email" placeholder="您的邮箱（用于接收账号）" required>
-    <input type="text" name="package" placeholder="购买套餐" id="form_package" readonly>
-    <input type="text" name="pay_time" placeholder="支付时间/备注" required>
-    <button class="submit-btn" type="submit">提交订单</button>
-  </form>
-</div>
+<a id="mailLink" class="btn mailbtn" style="text-decoration:none;text-align:center">
+发送订单信息给客服
+</a>
+
+<button class="btn back" onclick="history.back()">返回套餐页</button>
 
 <div class="kefu">
 TG客服 @kio_037<br>
-QQ客服 2245190858<br>
-客服邮箱：tt8450950@gmail.com
+QQ客服 2245190858
 </div>
 
 <script>
-function getParam(name) {
+function getParam(name){
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(name);
 }
 const amount = getParam('amount');
-let alipayUrl = getParam('alipay');
 
-// 固定 58 元套餐的新支付宝链接
+// 支付宝（58元专用）
+let alipayUrl = '';
 if (amount === '58') {
   alipayUrl = 'https://qr.alipay.com/2m618367pz0nzbfhjptoef2';
+} else {
+  alipayUrl = 'https://qr.alipay.com/';
 }
+document.getElementById('alipayBtn').onclick = () => window.open(alipayUrl);
+
+// USDT TRC20 地址（你提供的）
+document.getElementById('usdtBtn').onclick = () => {
+  alert(`USDT TRC20 地址：
+TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi
+
+转账后请点击【发送订单信息】联系客服开通`);
+};
+
+// 发送订单邮件给你
+const mailTo = "tt8450950@gmail.com";
+const subject = "用户购买套餐通知";
+const body = `我已购买套餐：
+金额：${amount} 元
+请客服开通账号`;
+
+document.getElementById("mailLink").href = 
+`mailto:${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 document.getElementById('amountText').textContent = '金额：¥' + amount;
-document.getElementById('form_package').value = amount + ' 元';
-document.getElementById('alipayBtn').onclick = () => window.open(alipayUrl);
 </script>
 </body>
 </html>
