@@ -12,9 +12,7 @@ h1{font-size:28px;margin-bottom:30px}
 .amount{font-size:28px;color:#ff3b30;margin-bottom:40px}
 .btn{width:100%;max-width:400px;padding:18px;border:none;border-radius:14px;font-size:22px;font-weight:500;margin-bottom:16px;color:#fff}
 .alipay{background:#007aff}
-.wechat{background:#34c758}
 .usdt{background:#4a90e2}
-.mailbtn{background:#ff9500;margin-top:10px}
 .back{background:#333;color:#aaa;margin-top:20px}
 .kefu{color:#aaa;font-size:14px;margin-top:30px;text-align:center;line-height:1.6}
 </style>
@@ -23,51 +21,35 @@ h1{font-size:28px;margin-bottom:30px}
 <body>
 <div class="site-title">牛逼高速机场</div>
 <h1>确认支付</h1>
-<div class="amount" id="amountText">金额：¥--</div>
+<div class="amount" id="price">¥ 0.00</div>
 
 <button class="btn alipay" id="alipayBtn">支付宝支付</button>
-<button class="btn wechat">微信支付</button>
-<button class="btn usdt" id="usdtBtn">USDT 支付</button>
-
-<button class="btn mailbtn" onclick="showMailTip()">发送订单信息给客服</button>
-
-<button class="btn back" onclick="history.back()">返回套餐页</button>
+<button class="btn usdt">USDT 支付</button>
+<button class="btn back" onclick="history.back()">返回上一页</button>
 
 <div class="kefu">
-TG客服 @kio_037<br>
-QQ客服 2245190858
+客服微信：你的微信<br>
+支付后联系客服开通
 </div>
 
 <script>
-function getParam(name){
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
-const amount = getParam('amount');
+// 获取链接上的参数：?price=68 或 ?price=288
+const urlParams = new URLSearchParams(window.location.search);
+const price = urlParams.get('price');
 
-// 支付宝
-let alipayUrl = '';
-if (amount === '58') {
-  alipayUrl = 'https://qr.alipay.com/2m618367pz0nzbfhjptoef2';
+const priceEl = document.getElementById('price');
+const alipayEl = document.getElementById('alipayBtn');
+
+if (price === '68') {
+  priceEl.textContent = '¥ 68.00';
+  alipayEl.onclick = () => window.open('https://qr.alipay.com/2m617728iqomyzupkxiqke5','_blank');
+} else if (price === '288') {
+  priceEl.textContent = '¥ 288.00';
+  alipayEl.onclick = () => window.open('https://qr.alipay.com/2m611308ww3ce4zwz5z7c0f','_blank');
 } else {
-  alipayUrl = 'https://qr.alipay.com/';
+  priceEl.textContent = '¥ 0.00';
+  alipayEl.onclick = () => alert('无效套餐');
 }
-document.getElementById('alipayBtn').onclick = () => window.open(alipayUrl);
-
-// USDT
-document.getElementById('usdtBtn').onclick = () => {
-  alert(`USDT TRC20 地址：
-TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi
-
-转账后请发送订单截图至客服邮箱`);
-};
-
-// 邮箱提示（不再跳转，只弹窗）
-function showMailTip() {
-  alert('请将支付截图发送至邮箱：\n\ntt8450950@gmail.com\n\n标题：套餐金额+付款账号');
-}
-
-document.getElementById('amountText').textContent = '金额：¥' + amount;
 </script>
 </body>
 </html>
