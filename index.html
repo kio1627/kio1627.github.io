@@ -23,7 +23,6 @@ text-align:center;
 font-size:28px;
 font-weight:bold;
 margin:40px 0 30px;
-color:#fff;
 }
 .card{
 background:#1c1c1e;
@@ -37,7 +36,7 @@ margin-bottom:10px;
 }
 .card .tag{
 display:inline-block;
-background:#2a2a2c;
+background:#2a2a2a;
 padding:4px 10px;
 border-radius:12px;
 font-size:13px;
@@ -59,19 +58,7 @@ border-radius:14px;
 padding:15px;
 width:100%;
 font-size:16px;
-font-weight:500;
 cursor:pointer;
-}
-.buy:hover{
-opacity:.9;
-}
-.unlimited-card{
-border:2px solid #ff3b30;
-background:linear-gradient(135deg, #1c1c1e 0%, #2a1a1a 100%);
-}
-.unlimited-card .tag{
-background:#ff3b30;
-color:#fff;
 }
 </style>
 </head>
@@ -85,7 +72,7 @@ color:#fff;
   <span class="tag">每月200G</span>
   <span class="tag">3台设备</span>
   <div class="price">¥68 / 年</div>
-  <button class="buy" onclick="location.href='pay.html?price=68'">立即购买</button>
+  <a href="pay.html?price=68"><button class="buy">立即购买</button></a>
 </div>
 
 <div class="card">
@@ -94,7 +81,7 @@ color:#fff;
   <span class="tag">每月1000G</span>
   <span class="tag">3台设备</span>
   <div class="price">¥128 / 年</div>
-  <button class="buy">立即购买</button>
+  <a href="pay.html?price=128"><button class="buy">立即购买</button></a>
 </div>
 
 <div class="card">
@@ -103,16 +90,16 @@ color:#fff;
   <span class="tag">每月3000G</span>
   <span class="tag">3台设备</span>
   <div class="price">¥188 / 年</div>
-  <button class="buy">立即购买</button>
+  <a href="pay.html?price=188"><button class="buy">立即购买</button></a>
 </div>
 
-<div class="card unlimited-card">
+<div class="card">
   <h3>年度无限流量版</h3>
   <span class="tag">288元/年</span>
   <span class="tag">无限流量</span>
   <span class="tag">3台设备</span>
   <div class="price">¥288 / 年</div>
-  <button class="buy" onclick="location.href='pay.html?price=288'">立即购买</button>
+  <a href="pay.html?price=288"><button class="buy">立即购买</button></a>
 </div>
 
 <div class="card">
@@ -121,7 +108,7 @@ color:#fff;
   <span class="tag">总流量200G</span>
   <span class="tag">3台设备</span>
   <div class="price">¥42 永久</div>
-  <button class="buy">立即购买</button>
+  <a href="pay.html?price=42"><button class="buy">立即购买</button></a>
 </div>
 
 <div class="card">
@@ -130,7 +117,7 @@ color:#fff;
   <span class="tag">总流量2TB</span>
   <span class="tag">3台设备</span>
   <div class="price">¥98 永久</div>
-  <button class="buy">立即购买</button>
+  <a href="pay.html?price=98"><button class="buy">立即购买</button></a>
 </div>
 
 </body>
