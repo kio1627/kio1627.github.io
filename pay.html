@@ -37,32 +37,23 @@ const urlParams = new URLSearchParams(window.location.search);
 const price = urlParams.get('price');
 
 const priceEl = document.getElementById('price');
-const alipayEl = document.getElementById('alipayBtn');
-const usdtEl = document.getElementById('usdtBtn');
-
 const usdtAddr = 'TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi';
 
-if (price === '68') {
-  priceEl.textContent = '¥ 68.00';
-  alipayEl.onclick = () => window.open('https://qr.alipay.com/2m617728iqomyzupkxiqke5','_blank');
-  usdtEl.onclick = () => {
-    navigator.clipboard.writeText(usdtAddr);
-    alert('USDT 地址已复制');
-  };
-} 
-else if (price === '288') {
-  priceEl.textContent = '¥ 288.00';
-  alipayEl.onclick = () => window.open('https://qr.alipay.com/2m611308ww3ce4zwz5z7c0f','_blank');
-  usdtEl.onclick = () => {
-    navigator.clipboard.writeText(usdtAddr);
-    alert('USDT 地址已复制');
-  };
-} 
-else {
-  priceEl.textContent = '¥ 0.00';
-  alipayEl.onclick = () => alert('无效套餐');
-  usdtEl.onclick = () => alert('无效套餐');
-}
+// 显示对应金额
+priceEl.textContent = '¥ ' + price + '.00';
+
+// 支付宝统一用跳转（你可以后续自己分链接）
+document.getElementById('alipayBtn').onclick = () => {
+  if(price == 68) window.open('https://qr.alipay.com/2m617728iqomyzupkxiqke5','_blank');
+  else if(price == 288) window.open('https://qr.alipay.com/2m611308ww3ce4zwz5z7c0f','_blank');
+  else alert('请使用 USDT 支付或联系客服');
+};
+
+// USDT 统一复制地址
+document.getElementById('usdtBtn').onclick = () => {
+  navigator.clipboard.writeText(usdtAddr);
+  alert('USDT 地址已复制');
+};
 </script>
 </body>
 </html>
