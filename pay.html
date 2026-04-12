@@ -9,7 +9,10 @@
 body{background:#000;color:#fff;padding:40px 20px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
 .site-title{font-size:32px;margin-bottom:20px;font-weight:bold;text-align:center}
 h1{font-size:28px;margin-bottom:30px}
-.amount{font-size:28px;color:#ff3b30;margin-bottom:40px}
+.amount{font-size:28px;color:#ff3b30;margin-bottom:25px}
+.input-box{width:100%;max-width:400px;margin-bottom:20px}
+input[type="email"]{width:100%;padding:16px;border-radius:14px;border:1px solid #444;background:#111;color:#fff;font-size:16px;outline:none}
+input::placeholder{color:#888}
 .btn{width:100%;max-width:400px;padding:18px;border:none;border-radius:14px;font-size:22px;font-weight:500;margin-bottom:16px;color:#fff;cursor:pointer}
 .alipay{background:#007aff}
 .usdt{background:#4a90e2}
@@ -21,47 +24,19 @@ h1{font-size:28px;margin-bottom:30px}
 <body>
 <div class="site-title">牛逼高速机场</div>
 <h1>确认支付</h1>
-<div class="amount" id="price">¥ 0.00</div>
+<div class="amount"></div>
 
-<button class="btn alipay" id="alipayBtn">支付宝支付</button>
-<button class="btn usdt" id="usdtBtn">USDT 支付</button>
-<button class="btn back" onclick="history.back()">返回上一页</button>
-
-<div class="tip">
-支付没到账联系客服处理<br>
-TG: kio_037
+<div class="input-box">
+<input type="email" placeholder="填写接收凭证邮箱" required>
 </div>
 
-<script>
-const urlParams = new URLSearchParams(window.location.search);
-const price = urlParams.get('price');
-document.getElementById('price').innerText = '¥ ' + price + '.00';
+<button class="btn alipay">支付宝支付</button>
+<button class="btn usdt">USDT 支付</button>
+<button class="btn back">返回上一页</button>
 
-// 👇 完全对应你给的6个支付宝链接，一个不差
-const alipayLinks = {
-  '42': 'https://qr.alipay.com/2m616131bcknnzkddkskkd5',
-  '68': 'https://qr.alipay.com/2m617728iqomyzupkxiqke5',
-  '98': 'https://qr.alipay.com/2m618938m9ydqkhrsmlmqee',
-  '128': 'https://qr.alipay.com/2m613355qwofxnkomwaqqf0',
-  '188': 'https://qr.alipay.com/2m615093g3amu5rltcxn1e6',
-  '288': 'https://qr.alipay.com/2m611308ww3ce4zwz5z7c0f'
-};
-
-// 支付宝按钮：点哪个价格，跳对应收款码
-document.getElementById('alipayBtn').onclick = function(){
-  if(alipayLinks[price]){
-    window.location.href = alipayLinks[price];
-  }else{
-    alert('无效套餐');
-  }
-};
-
-// USDT按钮：统一复制地址
-document.getElementById('usdtBtn').onclick = function(){
-  navigator.clipboard.writeText('TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi').then(() => {
-    alert('USDT地址已复制');
-  });
-};
-</script>
+<div class="tip">
+支付完成后系统将自动开通套餐<br>
+如遇未到账请联系客服处理
+</div>
 </body>
 </html>
