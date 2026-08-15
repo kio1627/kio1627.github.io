@@ -3,301 +3,515 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>牛逼高速机场</title>
+
+<title>牛逼高速节点</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
 }
 
 body{
-    background:#121212;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at 50% 0%,#16365d 0%,#091725 42%,#040b13 100%);
     color:#fff;
-    padding:20px;
-    max-width:500px;
-    margin:0 auto;
+    padding:35px 16px 60px;
 }
 
-.site-title{
-    text-align:center;
-    font-size:28px;
-    font-weight:bold;
-    margin:40px 0 10px;
+.container{
+    width:100%;
+    max-width:900px;
+    margin:auto;
 }
 
-.site-desc{
+/* 顶部 */
+
+.header{
     text-align:center;
-    color:#999;
+    padding:25px 0 35px;
+}
+
+.header h1{
+    font-size:36px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:14px;
+}
+
+.header p{
+    color:#8d9bae;
+    font-size:15px;
+    line-height:1.8;
+}
+
+.features{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.features span{
+    padding:7px 13px;
+    border:1px solid #29435f;
+    border-radius:20px;
+    background:rgba(10,27,44,.75);
+    color:#a5b6c9;
     font-size:13px;
-    line-height:1.7;
-    margin-bottom:30px;
 }
+
+/* 分区 */
+
+.section-title{
+    font-size:21px;
+    font-weight:700;
+    margin:15px 0 18px;
+}
+
+.plans{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+}
+
+/* 套餐 */
 
 .card{
-    background:#1c1c1e;
-    border-radius:18px;
-    padding:22px;
-    margin-bottom:18px;
+    position:relative;
+    background:rgba(15,29,45,.94);
+    border:1px solid #283e56;
+    border-radius:22px;
+    padding:24px;
+    box-shadow:0 12px 32px rgba(0,0,0,.22);
 }
 
-.card h3{
-    font-size:19px;
-    margin-bottom:10px;
-}
-
-.card .tag{
-    display:inline-block;
-    background:#2a2a2a;
-    padding:4px 10px;
-    border-radius:12px;
-    font-size:13px;
-    margin-right:6px;
+.card h2{
+    font-size:20px;
+    font-weight:700;
     margin-bottom:8px;
-    color:#ddd;
 }
 
 .price{
-    font-size:24px;
+    color:#43aaff;
+    font-size:31px;
+    font-weight:800;
+    margin:8px 0 19px;
+}
+
+.price small{
+    color:#8996a8;
+    font-size:14px;
+    font-weight:400;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.tag{
+    background:#0a1827;
+    border:1px solid #293e55;
+    color:#b3c0cf;
+    border-radius:10px;
+    padding:7px 10px;
+    font-size:13px;
+}
+
+.features-list{
+    list-style:none;
+    margin-bottom:20px;
+}
+
+.features-list li{
+    color:#9caabc;
+    font-size:14px;
+    padding:5px 0;
+}
+
+.features-list li::before{
+    content:"✓";
+    color:#42a9ff;
+    margin-right:8px;
     font-weight:bold;
-    color:#ff3b30;
-    margin:12px 0;
 }
 
 .buy{
     display:block;
-    background:#007aff;
-    color:#fff;
+    width:100%;
+    padding:14px;
     text-align:center;
     text-decoration:none;
-    border-radius:14px;
-    padding:15px;
-    width:100%;
-    font-size:16px;
-    font-weight:500;
-}
-
-.unlimited-card{
-    border:2px solid #ff3b30;
-    background:linear-gradient(
-        135deg,
-        #1c1c1e 0%,
-        #2a1a1a 100%
-    );
-}
-
-.unlimited-card .tag{
-    background:#ff3b30;
     color:#fff;
+    background:#147fe5;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:600;
 }
+
+.buy:active{
+    transform:scale(.98);
+}
+
+/* 推荐 */
+
+.recommend{
+    border-color:#278cf0;
+    box-shadow:
+    0 0 0 1px rgba(39,140,240,.12),
+    0 15px 35px rgba(0,80,160,.18);
+}
+
+.recommend-badge{
+    position:absolute;
+    top:18px;
+    right:18px;
+    background:#147fe5;
+    color:#fff;
+    border-radius:20px;
+    padding:5px 10px;
+    font-size:12px;
+}
+
+/* 定制 */
 
 .custom{
-    background:#1c1c1e;
-    border-radius:18px;
-    padding:22px;
-    margin-top:25px;
+    margin-top:30px;
+    padding:25px;
     text-align:center;
+    background:rgba(15,29,45,.94);
+    border:1px solid #283e56;
+    border-radius:22px;
 }
 
 .custom h3{
-    font-size:18px;
+    font-size:19px;
     margin-bottom:8px;
 }
 
 .custom p{
-    color:#999;
+    color:#8997a9;
     font-size:13px;
-    margin-bottom:15px;
+    margin-bottom:17px;
 }
 
 .custom a{
-    display:block;
-    background:#007aff;
+    display:inline-block;
+    padding:12px 28px;
+    border-radius:12px;
+    background:#147fe5;
     color:#fff;
     text-decoration:none;
-    border-radius:14px;
-    padding:14px;
+}
+
+/* 底部 */
+
+.footer{
+    text-align:center;
+    color:#56677b;
+    font-size:12px;
+    margin-top:25px;
+}
+
+/* 电脑端 */
+
+@media(min-width:700px){
+
+    .plans{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .header h1{
+        font-size:42px;
+    }
+}
+
+/* 手机 */
+
+@media(max-width:450px){
+
+    body{
+        padding:25px 14px 50px;
+    }
+
+    .header h1{
+        font-size:30px;
+    }
+
+    .card{
+        padding:21px;
+    }
+
+    .price{
+        font-size:28px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="site-title">
-    牛逼高速机场
-</div>
+<div class="container">
 
-<div class="site-desc">
-    高速稳定线路<br>
-    支持安卓、苹果、电脑
-</div>
+<!-- 顶部 -->
 
+<div class="header">
 
-<!-- 68元 -->
+    <h1>牛逼高速节点</h1>
 
-<div class="card">
+    <p>
+        高速稳定线路 · 多地区优质节点<br>
+        家宽、住宅线路优化 · 支持安卓、苹果、电脑
+    </p>
 
-    <h3>年度基础版</h3>
-
-    <span class="tag">68元/年</span>
-    <span class="tag">每月200G</span>
-    <span class="tag">3台设备</span>
-
-    <div class="price">
-        ¥68 / 年
+    <div class="features">
+        <span>高速线路</span>
+        <span>流媒体解锁</span>
+        <span>多地区节点</span>
+        <span>多设备支持</span>
     </div>
 
-    <a
-        class="buy"
-        href="pay.html?price=68&name=年度基础版&traffic=每月200G&device=3台设备&duration=1年"
-    >
-        立即购买
-    </a>
-
 </div>
 
 
-<!-- 128元 -->
+<!-- 年度套餐 -->
 
-<div class="card">
+<div class="section-title">
+    年度套餐
+</div>
 
-    <h3>年度标准版</h3>
+<div class="plans">
 
-    <span class="tag">128元/年</span>
-    <span class="tag">每月1000G</span>
-    <span class="tag">3台设备</span>
 
-    <div class="price">
-        ¥128 / 年
+    <!-- 68 -->
+
+    <div class="card">
+
+        <h2>年度基础版</h2>
+
+        <div class="price">
+            ¥68 <small>/ 年</small>
+        </div>
+
+        <div class="tags">
+            <span class="tag">每月200G</span>
+            <span class="tag">3台设备</span>
+        </div>
+
+        <ul class="features-list">
+            <li>高速稳定线路</li>
+            <li>流媒体解锁</li>
+            <li>多地区优质节点</li>
+        </ul>
+
+        <a
+            class="buy"
+            href="pay.html?price=68">
+            立即购买
+        </a>
+
     </div>
 
-    <a
-        class="buy"
-        href="pay.html?price=128&name=年度标准版&traffic=每月1000G&device=3台设备&duration=1年"
-    >
-        立即购买
-    </a>
 
-</div>
+    <!-- 128 -->
 
+    <div class="card">
 
-<!-- 188元 -->
+        <h2>年度标准版</h2>
 
-<div class="card">
+        <div class="price">
+            ¥128 <small>/ 年</small>
+        </div>
 
-    <h3>年度旗舰版</h3>
+        <div class="tags">
+            <span class="tag">每月1000G</span>
+            <span class="tag">3台设备</span>
+        </div>
 
-    <span class="tag">188元/年</span>
-    <span class="tag">每月3000G</span>
-    <span class="tag">3台设备</span>
+        <ul class="features-list">
+            <li>高速稳定线路</li>
+            <li>流媒体解锁</li>
+            <li>多地区优质节点</li>
+        </ul>
 
-    <div class="price">
-        ¥188 / 年
+        <a
+            class="buy"
+            href="pay.html?price=128">
+            立即购买
+        </a>
+
     </div>
 
-    <a
-        class="buy"
-        href="pay.html?price=188&name=年度旗舰版&traffic=每月3000G&device=3台设备&duration=1年"
-    >
-        立即购买
-    </a>
 
-</div>
+    <!-- 188 -->
 
+    <div class="card recommend">
 
-<!-- 288元 -->
+        <div class="recommend-badge">
+            推荐
+        </div>
 
-<div class="card unlimited-card">
+        <h2>年度旗舰版</h2>
 
-    <h3>年度无限流量版</h3>
+        <div class="price">
+            ¥188 <small>/ 年</small>
+        </div>
 
-    <span class="tag">288元/年</span>
-    <span class="tag">无限流量</span>
-    <span class="tag">3台设备</span>
+        <div class="tags">
+            <span class="tag">每月3000G</span>
+            <span class="tag">3台设备</span>
+        </div>
 
-    <div class="price">
-        ¥288 / 年
+        <ul class="features-list">
+            <li>高速稳定线路</li>
+            <li>流媒体解锁</li>
+            <li>多地区优质节点</li>
+        </ul>
+
+        <a
+            class="buy"
+            href="pay.html?price=188">
+            立即购买
+        </a>
+
     </div>
 
-    <a
-        class="buy"
-        href="pay.html?price=288&name=年度无限流量版&traffic=无限流量&device=3台设备&duration=1年"
-    >
-        立即购买
-    </a>
 
-</div>
+    <!-- 288 -->
 
+    <div class="card">
 
-<!-- 42元 -->
+        <h2>年度无限流量版</h2>
 
-<div class="card">
+        <div class="price">
+            ¥288 <small>/ 年</small>
+        </div>
 
-    <h3>永久入门版</h3>
+        <div class="tags">
+            <span class="tag">无限流量</span>
+            <span class="tag">3台设备</span>
+        </div>
 
-    <span class="tag">42元永久</span>
-    <span class="tag">总流量200G</span>
-    <span class="tag">3台设备</span>
+        <ul class="features-list">
+            <li>高速稳定线路</li>
+            <li>流媒体解锁</li>
+            <li>多地区优质节点</li>
+        </ul>
 
-    <div class="price">
-        ¥42 永久
+        <a
+            class="buy"
+            href="pay.html?price=288">
+            立即购买
+        </a>
+
     </div>
 
-    <a
-        class="buy"
-        href="pay.html?price=42&name=永久入门版&traffic=总流量200G&device=3台设备&duration=永久"
-    >
-        立即购买
-    </a>
-
 </div>
 
 
-<!-- 98元 -->
+<!-- 永久套餐 -->
 
-<div class="card">
+<div class="section-title">
+    永久流量套餐
+</div>
 
-    <h3>永久大容量版</h3>
+<div class="plans">
 
-    <span class="tag">98元永久</span>
-    <span class="tag">总流量2TB</span>
-    <span class="tag">3台设备</span>
 
-    <div class="price">
-        ¥98 永久
+    <!-- 42 -->
+
+    <div class="card">
+
+        <h2>永久入门版</h2>
+
+        <div class="price">
+            ¥42 <small>/ 永久</small>
+        </div>
+
+        <div class="tags">
+            <span class="tag">总流量200G</span>
+            <span class="tag">3台设备</span>
+        </div>
+
+        <ul class="features-list">
+            <li>高速稳定线路</li>
+            <li>流媒体解锁</li>
+            <li>永久有效</li>
+        </ul>
+
+        <a
+            class="buy"
+            href="pay.html?price=42">
+            立即购买
+        </a>
+
     </div>
 
-    <a
-        class="buy"
-        href="pay.html?price=98&name=永久大容量版&traffic=总流量2TB&device=3台设备&duration=永久"
-    >
-        立即购买
-    </a>
+
+    <!-- 98 -->
+
+    <div class="card">
+
+        <h2>永久大容量版</h2>
+
+        <div class="price">
+            ¥98 <small>/ 永久</small>
+        </div>
+
+        <div class="tags">
+            <span class="tag">总流量2TB</span>
+            <span class="tag">3台设备</span>
+        </div>
+
+        <ul class="features-list">
+            <li>高速稳定线路</li>
+            <li>流媒体解锁</li>
+            <li>永久有效</li>
+        </ul>
+
+        <a
+            class="buy"
+            href="pay.html?price=98">
+            立即购买
+        </a>
+
+    </div>
 
 </div>
 
 
-<!-- 专线定制 -->
+<!-- 客服 -->
 
 <div class="custom">
 
     <h3>专线定制</h3>
 
     <p>
-        如需专线定制或遇到问题，请联系客服
+        如需定制线路或遇到问题，请联系客服
     </p>
 
     <a
         href="https://t.me/kio_037"
-        target="_blank"
-    >
+        target="_blank">
         联系客服
     </a>
 
 </div>
 
+
+<div class="footer">
+    牛逼高速节点 · 高速稳定 · 流媒体解锁
+</div>
+
+</div>
 
 </body>
 </html>
