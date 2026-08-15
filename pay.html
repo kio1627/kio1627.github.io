@@ -4,64 +4,327 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>牛逼高速机场 - 确认支付</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
-body{background:#000;color:#fff;padding:40px 20px;display:flex;flex-direction:column;align-items:center;min-height:100vh}
-.site-title{font-size:32px;margin-bottom:20px;font-weight:bold;text-align:center}
-h1{font-size:28px;margin-bottom:30px}
-.amount{font-size:28px;color:#ff3b30;margin-bottom:40px}
-.btn{width:100%;max-width:400px;padding:18px;border:none;border-radius:14px;font-size:22px;font-weight:500;margin-bottom:16px;color:#fff;cursor:pointer}
-.alipay{background:#007aff}
-.usdt{background:#4a90e2}
-.back{background:#333;color:#aaa;margin-top:20px}
-.tip{color:#ccc;font-size:15px;margin-top:25px;text-align:center;line-height:1.6}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,sans-serif
+}
+
+body{
+    background:#000;
+    color:#fff;
+    padding:40px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh
+}
+
+.site-title{
+    font-size:32px;
+    margin-bottom:20px;
+    font-weight:bold;
+    text-align:center
+}
+
+h1{
+    font-size:28px;
+    margin-bottom:25px
+}
+
+.amount{
+    font-size:28px;
+    color:#ff3b30;
+    margin-bottom:30px
+}
+
+.email-box{
+    width:100%;
+    max-width:400px;
+    margin-bottom:20px
+}
+
+.email-title{
+    font-size:16px;
+    margin-bottom:10px
+}
+
+.required{
+    color:#ff3b30
+}
+
+.email-input{
+    width:100%;
+    padding:16px;
+    border:1px solid #444;
+    border-radius:14px;
+    background:#1c1c1e;
+    color:#fff;
+    font-size:16px;
+    outline:none
+}
+
+.email-input:focus{
+    border-color:#007aff
+}
+
+.email-tip{
+    color:#888;
+    font-size:13px;
+    margin-top:8px;
+    line-height:1.5
+}
+
+.btn{
+    width:100%;
+    max-width:400px;
+    padding:18px;
+    border:none;
+    border-radius:14px;
+    font-size:20px;
+    font-weight:500;
+    margin-bottom:16px;
+    color:#fff;
+    cursor:pointer
+}
+
+.alipay{
+    background:#007aff
+}
+
+.usdt{
+    background:#4a90e2
+}
+
+.back{
+    background:#333;
+    color:#aaa;
+    margin-top:5px
+}
+
+.tip{
+    color:#ccc;
+    font-size:15px;
+    margin-top:25px;
+    text-align:center;
+    line-height:1.6
+}
 </style>
 </head>
 
 <body>
-<div class="site-title">牛逼高速机场</div>
-<h1>确认支付</h1>
-<div class="amount" id="price">¥ 0.00</div>
 
-<button class="btn alipay" id="alipayBtn">支付宝支付</button>
-<button class="btn usdt" id="usdtBtn">USDT 支付</button>
-<button class="btn back" onclick="history.back()">返回上一页</button>
-
-<div class="tip">
-支付没到账联系客服处理<br>
-TG: kio_037
+<div class="site-title">
+    牛逼高速机场
 </div>
 
+<h1>
+    确认支付
+</h1>
+
+<div class="amount" id="price">
+    ¥ 0.00
+</div>
+
+
+<!-- 邮箱 -->
+
+<div class="email-box">
+
+    <div class="email-title">
+        接收邮箱 <span class="required">*</span>
+    </div>
+
+    <input
+        class="email-input"
+        id="email"
+        type="email"
+        placeholder="请输入你的接收邮箱"
+        autocomplete="email"
+    >
+
+    <div class="email-tip">
+        下单请填写接收邮箱，必须填写邮箱才能支付。
+    </div>
+
+</div>
+
+
+<button
+    class="btn alipay"
+    id="alipayBtn"
+>
+    支付宝支付
+</button>
+
+
+<button
+    class="btn usdt"
+    id="usdtBtn"
+>
+    USDT 支付
+</button>
+
+
+<button
+    class="btn back"
+    onclick="history.back()"
+>
+    返回上一页
+</button>
+
+
+<div class="tip">
+
+    支付没到账联系客服处理<br>
+    TG: kio_037
+
+</div>
+
+
 <script>
-const urlParams = new URLSearchParams(window.location.search);
-const price = urlParams.get('price');
-document.getElementById('price').innerText = '¥ ' + price + '.00';
 
-// 👇 完全对应你给的6个支付宝链接，一个不差
+const urlParams =
+new URLSearchParams(
+    window.location.search
+);
+
+const price =
+urlParams.get('price');
+
+
+document.getElementById('price').innerText =
+'¥ ' + price + '.00';
+
+
+// 6个套餐支付宝链接
+
 const alipayLinks = {
-  '42': 'https://qr.alipay.com/2m616131bcknnzkddkskkd5',
-  '68': 'https://qr.alipay.com/2m617728iqomyzupkxiqke5',
-  '98': 'https://qr.alipay.com/2m618938m9ydqkhrsmlmqee',
-  '128': 'https://qr.alipay.com/2m613355qwofxnkomwaqqf0',
-  '188': 'https://qr.alipay.com/2m615093g3amu5rltcxn1e6',
-  '288': 'https://qr.alipay.com/2m611308ww3ce4zwz5z7c0f'
+
+    '42':
+    'https://qr.alipay.com/2m616131bcknnzkddkskkd5',
+
+    '68':
+    'https://qr.alipay.com/2m617728iqomyzupkxiqke5',
+
+    '98':
+    'https://qr.alipay.com/2m618938m9ydqkhrsmlmqee',
+
+    '128':
+    'https://qr.alipay.com/2m613355qwofxnkomwaqqf0',
+
+    '188':
+    'https://qr.alipay.com/2m615093g3amu5rltcxn1e6',
+
+    '288':
+    'https://qr.alipay.com/2m611308ww3ce4zwz5z7c0f'
 };
 
-// 支付宝按钮：点哪个价格，跳对应收款码
-document.getElementById('alipayBtn').onclick = function(){
-  if(alipayLinks[price]){
-    window.location.href = alipayLinks[price];
-  }else{
-    alert('无效套餐');
-  }
+
+// 检查邮箱
+
+function checkEmail(){
+
+    const email =
+    document.getElementById('email')
+    .value
+    .trim();
+
+    if(!email){
+
+        alert('请先填写接收邮箱');
+
+        document
+        .getElementById('email')
+        .focus();
+
+        return false;
+    }
+
+    const emailReg =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailReg.test(email)){
+
+        alert('请输入正确的邮箱地址');
+
+        document
+        .getElementById('email')
+        .focus();
+
+        return false;
+    }
+
+    return true;
+}
+
+
+// 支付宝
+
+document.getElementById('alipayBtn').onclick =
+function(){
+
+    if(!checkEmail()){
+        return;
+    }
+
+    if(alipayLinks[price]){
+
+        window.location.href =
+        alipayLinks[price];
+
+    }else{
+
+        alert('无效套餐');
+
+    }
+
 };
 
-// USDT按钮：统一复制地址
-document.getElementById('usdtBtn').onclick = function(){
-  navigator.clipboard.writeText('TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi').then(() => {
-    alert('USDT地址已复制');
-  });
+
+// USDT
+
+document.getElementById('usdtBtn').onclick =
+function(){
+
+    if(!checkEmail()){
+        return;
+    }
+
+    const address =
+    'TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi';
+
+    if(navigator.clipboard){
+
+        navigator.clipboard
+        .writeText(address)
+        .then(function(){
+
+            alert('USDT地址已复制');
+
+        })
+        .catch(function(){
+
+            alert(
+                'USDT地址：\n' + address
+            );
+
+        });
+
+    }else{
+
+        alert(
+            'USDT地址：\n' + address
+        );
+
+    }
+
 };
+
 </script>
+
 </body>
 </html>
