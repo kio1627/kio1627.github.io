@@ -95,10 +95,6 @@ h1{
     background:#007aff
 }
 
-.usdt{
-    background:#4a90e2
-}
-
 .back{
     background:#333;
     color:#aaa;
@@ -129,9 +125,6 @@ h1{
     ¥ 0.00
 </div>
 
-
-<!-- 邮箱 -->
-
 <div class="email-box">
 
     <div class="email-title">
@@ -152,22 +145,12 @@ h1{
 
 </div>
 
-
 <button
     class="btn alipay"
     id="alipayBtn"
 >
     支付宝支付
 </button>
-
-
-<button
-    class="btn usdt"
-    id="usdtBtn"
->
-    USDT 支付
-</button>
-
 
 <button
     class="btn back"
@@ -176,14 +159,10 @@ h1{
     返回上一页
 </button>
 
-
 <div class="tip">
-
     支付没到账联系客服处理<br>
     TG: kio_037
-
 </div>
-
 
 <script>
 
@@ -195,12 +174,9 @@ new URLSearchParams(
 const price =
 urlParams.get('price');
 
-
 document.getElementById('price').innerText =
 '¥ ' + price + '.00';
 
-
-// 6个套餐支付宝链接
 
 const alipayLinks = {
 
@@ -223,8 +199,6 @@ const alipayLinks = {
     'https://qr.alipay.com/2m611308ww3ce4zwz5z7c0f'
 };
 
-
-// 检查邮箱
 
 function checkEmail(){
 
@@ -262,8 +236,6 @@ function checkEmail(){
 }
 
 
-// 支付宝
-
 document.getElementById('alipayBtn').onclick =
 function(){
 
@@ -279,46 +251,6 @@ function(){
     }else{
 
         alert('无效套餐');
-
-    }
-
-};
-
-
-// USDT
-
-document.getElementById('usdtBtn').onclick =
-function(){
-
-    if(!checkEmail()){
-        return;
-    }
-
-    const address =
-    'TB6qQqtvmvBUb3GZot4Nt9x4gdiPbuAUXi';
-
-    if(navigator.clipboard){
-
-        navigator.clipboard
-        .writeText(address)
-        .then(function(){
-
-            alert('USDT地址已复制');
-
-        })
-        .catch(function(){
-
-            alert(
-                'USDT地址：\n' + address
-            );
-
-        });
-
-    }else{
-
-        alert(
-            'USDT地址：\n' + address
-        );
 
     }
 
